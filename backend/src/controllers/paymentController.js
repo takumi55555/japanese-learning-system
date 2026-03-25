@@ -22,15 +22,8 @@ const createPaymentSession = async (req, res) => {
       });
     }
 
-    // Production frontend URL
-    let frontendUrl = process.env.PROD_FRONTEND_URL || "https://manabou.co.jp";
-    
-    // Ensure HTTPS protocol
-    if (!frontendUrl.startsWith("http")) {
-      frontendUrl = `https://${frontendUrl}`;
-    } else if (frontendUrl.startsWith("http://")) {
-      frontendUrl = frontendUrl.replace("http://", "https://");
-    }
+    // Frontend URL for Stripe redirect
+    const frontendUrl = process.env.FRONTEND_URL || "https://manabou.co.jp";
 
     // Validate input
     if (!courseId) {
