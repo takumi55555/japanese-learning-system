@@ -6,13 +6,15 @@ const { connectDatabase } = require("./db/connection");
 
 const app = express();
 
-// Production CORS configuration
+// CORS configuration
 const allowedOrigins = [
   "https://manabou.co.jp",
   "https://www.manabou.co.jp",
+  "http://localhost:5173",
+  "http://localhost:3000",
 ];
 
-// Add additional production origins if provided
+// Add additional origins if provided via environment variable
 if (process.env.PROD_CORS_ORIGIN) {
   const prodOrigins = process.env.PROD_CORS_ORIGIN.split(",").map((origin) =>
     origin.trim()
@@ -101,31 +103,3 @@ const startServer = async () => {
 };
 
 startServer();
-
-// const nodemailer = require('nodemailer');
-
-// const transporter = nodemailer.createTransport({
-//   host: process.env.EMAIL_HOST,
-//   port: process.env.EMAIL_PORT,
-//   secure: false,
-//   auth: {
-//     user: process.env.EMAIL_USER,
-//     pass: process.env.EMAIL_PASSWORD
-//   }
-// });
-
-// async function testEmail() {
-//   try {
-//     const info = await transporter.sendMail({
-//       from: process.env.EMAIL_USER,
-//       to: process.env.EMAIL_USER,
-//       subject: "Test Email",
-//       text: "This is a test!"
-//     });
-//     console.log('✅ Success! Message ID:', info.messageId);
-//   } catch (error) {
-//     console.error('❌ Error:', error.message);
-//   }
-// }
-
-// testEmail();

@@ -1,11 +1,16 @@
 /**
- * Get API URL - Production only
- * Returns: https://manabou.co.jp
+ * Get API URL
+ * Priority: VITE_API_URL env var > development localhost > production domain
  */
 export const getApiUrl = (): string => {
   // Check if we have an explicit API URL from environment variables
   if (import.meta.env.VITE_API_URL) {
     return import.meta.env.VITE_API_URL;
+  }
+
+  // Development: use localhost backend
+  if (import.meta.env.DEV) {
+    return "http://localhost:4000";
   }
 
   // Production: use HTTPS domain

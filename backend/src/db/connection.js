@@ -159,7 +159,7 @@ const createDefaultAdmin = async () => {
     const usersCollection = db.collection("users");
 
     // Admin credentials from environment variables
-    const adminEmail = process.env.ADMIN_EMAIL || "hayatenara8888@gmail.com";
+    const adminEmail = process.env.ADMIN_EMAIL || "admin@example.com";
     const adminUsername = process.env.ADMIN_USERNAME || "admin";
     const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
     const adminRole = process.env.ADMIN_ROLE || "admin";
