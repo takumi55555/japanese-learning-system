@@ -11,7 +11,6 @@ const certificateSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      index: true,
     },
     name: {
       type: String,
@@ -46,9 +45,8 @@ const certificateSchema = new mongoose.Schema(
   }
 );
 
-// Index for efficient queries
-certificateSchema.index({ userId: 1 });
-certificateSchema.index({ certificateNumber: 1 });
+// Compound indexes only (single-field indexes already defined via index: true in schema)
+certificateSchema.index({ userId: 1, issueDate: -1 });
 
 const Certificate = mongoose.model("Certificate", certificateSchema);
 

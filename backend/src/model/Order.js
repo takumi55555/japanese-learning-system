@@ -48,9 +48,8 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
-// Index for efficient queries
+// Compound indexes only (single-field indexes already defined via index: true in schema)
 orderSchema.index({ group_admin_id: 1, purchase_date: -1 });
-orderSchema.index({ payment_id: 1 });
 
 const Order = mongoose.model("Order", orderSchema);
 

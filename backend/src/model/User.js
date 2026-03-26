@@ -41,8 +41,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Index for composite queries
-userSchema.index({ role: 1 });
+// Index for composite queries (single-field indexes already defined via index: true in schema)
 userSchema.index({ email: 1, role: 1 });
 
 const User = mongoose.model("User", userSchema);
