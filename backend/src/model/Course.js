@@ -5,13 +5,11 @@ const courseSchema = new mongoose.Schema(
     userId: {
       type: String,
       required: true,
-      index: true,
     },
     courseId: {
       type: String,
       required: true,
       trim: true,
-      index: true,
     },
     courseName: {
       type: String,
@@ -136,10 +134,9 @@ const courseSchema = new mongoose.Schema(
 // Compound index to ensure one user can enroll in same course only once
 courseSchema.index({ userId: 1, courseId: 1 }, { unique: true });
 
-// Indexes for faster queries
+// Indexes for faster queries (single-field indexes already defined via index: true in schema)
 courseSchema.index({ userId: 1, status: 1 });
 courseSchema.index({ status: 1, enrollmentAt: -1 });
-courseSchema.index({ studentId: 1 });
 
 const Course = mongoose.model("Course", courseSchema);
 

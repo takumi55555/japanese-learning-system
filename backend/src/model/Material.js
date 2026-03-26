@@ -67,11 +67,9 @@ const materialSchema = new mongoose.Schema(
   }
 );
 
-// Indexes for better query performance
-materialSchema.index({ courseId: 1 });
+// Indexes for better query performance (courseId and type already indexed via index: true in schema)
 materialSchema.index({ uploadedBy: 1 });
 materialSchema.index({ createdAt: -1 });
-materialSchema.index({ type: 1 });
 
 const Material = mongoose.model("Material", materialSchema);
 
