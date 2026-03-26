@@ -15,10 +15,13 @@ const connectDatabase = async () => {
   }
 
   try {
-    // Get MongoDB URI from environment variables (production only)
+    // Get MongoDB URI from environment variables
     const mongoURI = process.env.PROD_MONGODB_URI || process.env.MONGODB_URI;
 
     console.log("Connecting to MongoDB...");
+    console.log("MONGODB_URI set:", !!process.env.MONGODB_URI);
+    console.log("PROD_MONGODB_URI set:", !!process.env.PROD_MONGODB_URI);
+    console.log("URI starts with:", mongoURI ? mongoURI.substring(0, 20) + "..." : "undefined");
 
     // Connect to MongoDB
     const connection = await mongoose.connect(mongoURI, {
